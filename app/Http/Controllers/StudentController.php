@@ -17,18 +17,20 @@ class StudentController extends Controller
         return view ('students.index')->with('students', $students);
     }
 
- 
+
     public function create(): View
     {
         return view('students.create');
     }
 
-  
+
     public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
         Student::create($input);
+        echo "prashant is scholar";
         return redirect('student')->with('flash_message', 'Student Addedd!');
+
     }
 
     public function show(string $id): View
@@ -48,13 +50,13 @@ class StudentController extends Controller
         $student = Student::find($id);
         $input = $request->all();
         $student->update($input);
-        return redirect('student')->with('flash_message', 'student Updated!');  
+        return redirect('student')->with('flash_message', 'student Updated!');
     }
 
-    
+
     public function destroy(string $id): RedirectResponse
     {
         Student::destroy($id);
-        return redirect('student')->with('flash_message', 'Student deleted!'); 
+        return redirect('student')->with('flash_message', 'Student deleted!');
     }
 }
